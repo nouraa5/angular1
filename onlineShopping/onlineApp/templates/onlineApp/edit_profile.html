@@ -1,0 +1,24 @@
+{% include "base.html" %} {% block title %}
+<title>Edit Profile</title>
+{% endblock title %} {% block content %}
+<section class="bg_op vh-100 pt-4">
+  <div class="container">  
+    <div class="container-fluid">
+    <h1 style="padding-top: 20px; align: center">Edit Profile</h1>
+    <form method="post">
+      {% csrf_token %} {% if form.errors %}
+      <div
+        class="alert alert-warning alert-dismissible fade show text-danger pt-0 pb-0 ps-5"
+      >
+        {% for field in form %} {{ field.errors }} {% endfor %}
+      </div>
+      {% endif %} {% for field in form %}
+      <div class="mb-3">{{ field.label }} {{ field }}</div>
+      {% endfor %}
+      <div class="text-center pt-1 mb-5 pb-1">
+        <button type="submit" class="btn btn-light px-3">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}

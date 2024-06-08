@@ -1,0 +1,48 @@
+{% extends "base1.html" %} {% load static %} {% block title %}
+<title>Home</title>
+{% endblock title %} {% block content %}
+
+<div class="bg_op">
+  <div style="padding-top: 30px; background-color: transparent">
+    <div class="container" style="width: 1300px">
+      <div class="row">
+        <div class="col-2" style="padding-left: 50px">
+          <h2>Empowering Connections<br />Energizing Innovations</h2>
+          <div style="padding-top: 50px">
+            <p>Your Ultimate Electronics Destination!</p>
+          </div>
+        </div>
+        <div class="col-2" style="padding-right: 50px">
+          <img
+            src="{% static 'images/background-home.jpg' %}"
+            alt="Electronics picture"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %} {% block body %}
+  <div class="row">
+    <div class="col-md-12 my-4 py-4 bg-light shadow rounded">
+      <div class="title-all text-center">
+        <h1>Welcome to Our Website</h1>
+      </div>
+      <div class="text-center mt-4">
+        <p>
+          This is the home page content. You can customize it as per your
+          requirements.
+        </p>
+        <p>
+          Feel free to explore our website and discover our products and
+          services.
+        </p>
+      </div>
+      <div class="text-center mt-4">
+        <a href="{% url 'products' %}" class="btn btn-primary"
+          >Show All Products</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

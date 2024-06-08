@@ -1,0 +1,91 @@
+{% extends 'base1.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Product | Electronics
+{% endblock %}
+
+{% block body %}
+
+<div class="shadow p-2 rounded" style="background-color:#e9ecef; color:black">
+    <div class="row text-center font-weight-bold">
+        <div class="col-lg-2">
+            <p><a href="/products">All Products</a></p>
+        </div>
+        {% for brand in brands %}
+        <div class="col-lg-2">
+            <p><a href="?brand={{brand.id}}">{{brand.brand_title}}</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-primary alert-dismissible fade show mb-0" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="shop-box-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12">
+                {% if filtered_brand %}
+                <div class="title-all text-center">
+                    <h1 class="text-center">{{ filtered_brand.brand_title }}</h1>
+                </div>
+                {% else %}
+                <div class="title-all text-center">
+                    <h1 class="text-center">All Products</h1>
+                </div>
+                {% endif %}
+                <div class="product-item-filter row">
+                    <div class="col-12 col-sm-10 text-center text-sm-left">
+                        <div class="toolbar-sorter-right">
+                            <p>Showing all {{ n }} product(s)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row product-brand-box">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade" id="list-view">
+                            {% for product in products %}
+                            <div class="list-view-box products-single shadow-sm">
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                        <div class="fix shadow p-2 bg-white rounded">
+                                            <div class="box-img-hover ctr" style="height:255px;">
+                                                <img src="{{ product.product_image.url }}" class="img-fluid" alt="Image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                                        <div class="why-text full-width list-product">
+                                            <h4>{{ product.product_name }}</h4>
+                                            <h5>₹ {{ product.product_price|intcomma }}</h5>
+                                            <ol class="my-2">
+                                                <li><strong>Brand : {{ product.brand.brand_title }}</strong></li>
+                                            </ol>
+                                            <a class="btn hvr-hover my-2" href="/productdetails/{{ product.id }}">View</a><br>
+                                            <a class="btn hvr-hover" href="/addtocart/{{ product.id }}">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

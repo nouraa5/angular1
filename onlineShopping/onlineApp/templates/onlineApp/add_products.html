@@ -1,0 +1,50 @@
+{% load static %}
+{% include "base.html" %}
+
+{% block title %}
+    <title>Add Products</title>
+{% endblock title %}
+
+{% block content %}
+<div class="main" style="padding-top: 10px; padding-bottom: 10px">
+
+    <section class="bg_op">
+        
+            <div class="container-fluid">
+                <div class="signup-content">
+                <div class="signin-form">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="card-header card-header-primary">
+                                    <h3 class="title">Add Product</h3>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="card-footer d-flex justify-content-center align-items-center mt-4">
+                            <button type="submit" id="btn_save" name="btn_save" required class="btn btn-fill btn-primary">Save Product</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4" style="margin-left: auto;">
+                    <!-- Signup Image -->
+                    <div class="signup-image">
+                        <figure><img src="{% static 'assets/images/products_img.png' %}" alt="products image"></figure>
+                        <a href="{% url 'home' %}" class="signup-image-link">Back to home</a>
+                    </div>
+                </div>
+            </div></div>
+        
+    </section>
+</div>
+{% endblock content %}

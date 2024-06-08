@@ -1,0 +1,134 @@
+{% extends "base.html" %} {% load static %} {% block title %}
+<title>{{ user.username }}</title>
+{% endblock title %} {% block style %}
+<style>
+    body {
+        color: #1a202c;
+        text-align: left;
+        background-color: #e2e8f0;
+    }
+
+    .main-body {
+        padding: 15px;
+    }
+
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+
+    .mb-3,
+    .my-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+
+    .h-100 {
+        height: 100% !important;
+    }
+
+    .shadow-none {
+        box-shadow: none !important;
+    }
+
+    .bg_radial_3 {
+        background: rgb(225, 135, 255);
+        background: linear-gradient(90deg, rgba(225, 135, 255, 1) 0%, rgba(249, 231, 255, 1) 50%, rgba(252, 252, 252, 1) 100%);
+    }
+</style>
+{% endblock style %} {% block content %}
+<section class="px-3 pt-3  vh-100">
+    <section class="row ">
+        <div class="col-md-4 mb-3 ">
+            <div class="card border border border-2 border-purple rounded-1">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img  src='{% static "images/avatar.png" %}' alt="Admin" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                            <h4>{{ user.username }}</h4>
+                            {% for group in user.groups.all %}
+                            <p class="text-secondary mb-1">{{ group.name }}</p>
+                            {%endfor%}
+                            {% for group in user.groups.all %}
+                            {% if group.name == 'Freelancers' %}
+                            <div class="container text-center">
+                                <button class="btn-primary btn">
+                                    <a href="{% url '_Services:my_services' %}" class="text-white" style="text-decoration: none;">
+                                        My Services
+                                    </a>
+                                </button>
+                            </div>
+                            {% endif %}
+                            {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mb-3">
+            <div class="card mb-3">
+                <div class="card-body border border-2 border-purple rounded-1">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email:</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            {{ user.email }}
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">First Name:</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary ">
+                                {{ user.first_name }}
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Last Name:</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ user.last_name }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Role:</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {% for group in user.groups.all %}
+                                        {{group.name}}
+                                        {%endfor%}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                        
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                           <a href="{% url 'user_profile:edit_profile' %}"  class="btn btn-primary m-3">edit profile</a>
+                                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </section>
+                </section>
+                {% endblock content %}

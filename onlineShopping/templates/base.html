@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}{% endblock %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="{% static 'assets/css/material-dashboard.css?v=2.1.0' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/store.css' %}">
+    <title>Electronics Store | Ecommerce Website</title>
+    <style>
+        .bg_op {background: rgb(255,255,255);
+          background: linear-gradient(24deg, rgba(255,255,255,1) 34%, rgba(251,79,20,1) 100%);}
+    </style>
+    {% block style %}{% endblock %}
+</head>
+<body class="dark-edition">
+    <!-- ----------------------Navbar start -------------------- -->
+    {% if user.is_authenticated %}
+        <div class="wrapper">
+            <div class="sidebar-wrapper">
+                
+                <div>
+                    <div style="padding-left: 50px; padding-top: 5px;">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'assets/img/capture.png' %}" style="width: 150px;">
+                        </a>
+                    </div>
+                    
+                
+                    {% for group in user.groups.all %}
+                        {% if group.name == 'Seller' %}
+                            <p style="font-weight: bold; color: #FB5016; font-size: 40px;text-align: center;">Welcome {{ user.first_name }}!</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                    <p style="text-align: right; padding-right: 80px;">
+                        <a href="{% url 'authentication:logout' %}">
+                            <i class="material-icons" style="vertical-align: middle;">logout</i>
+                            Logout
+                        </a>
+                    </p>
+                
+                
+                <ul class="nav" style="padding-left: 80px;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'onlineApp:add_product' %}">
+                            <i class="material-icons">add</i>
+                            <p>Add Products</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'onlineApp:my_products' %}">
+                            <i class="material-icons">list</i>
+                            <p>Product List</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'onlineApp:edit_profile' %}">
+                            <i class="material-icons">person</i>
+                            <p>Edit Profile</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'onlineApp:search_product' %}">
+                            <i class="material-icons">search</i>
+                            <p>Search Product</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    <!-- ---------------------- messages -------------------- -->
+    <!-- ---------------------- Navbar End -------------------- -->
+    {% block content %}{% endblock %}
+    <!-- ---------------------- Bootstrap JS -------------------- -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

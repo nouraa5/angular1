@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+{% block content %}
+
+<div class="bg_op">
+<div style="padding-top: 30px; background-color: transparent;">
+  <div class="container"  style="width: 1300px;">
+    <div class="row">
+      <div class="col-2" style="padding-left: 50px">
+        <h2>Empowering Connections<br />Energizing Innovations</h2>
+        <div style="padding-top: 50px">
+        <p>Your Ultimate Electronics Destination!</p> </div>
+      </div>
+      <div class="col-2" style="padding-right: 50px">
+        <img src="{% static 'images/background-home.jpg' %}" alt="Electronics picture">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+
+<div class="footer" style="padding-top: 40px; background-color: transparent;">
+
+<div class="container" style="width: 1300px;">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Download Our App</h3>
+        <p>Download App for Android and iOS mobile phones.</p>
+        <div class="app-logo">
+          <a href="#">
+            <img src="{% static 'images/play-store.png' %}" alt="Google Play Store Logo">
+        </a>
+        <a href="#">
+            <img src="{% static 'images/app-store.png' %}" alt="iOS Store Logo">
+        </a>
+        </div>
+      </div>
+      <div class="footer-col-2">
+        <img src="{% static 'images/logo-white.png' %}" alt="White logo">
+        <p>Our purpose is to sustainably make the pleasure and benefits of technology accessible to many.</p>
+      </div>
+      
+      <div class="footer-col-3">
+        <h3>Useful Links</h3>
+        <a href="#">
+            <ul>
+                <li>Coupons</li>
+                <li>Blog Post</li>
+                <li>Return Policy</li>
+                <li>Join Affiliates</li>
+            </ul>
+        </a>
+    </div>
+    
+    <div class="footer-col-4">
+        <h3>Follow Us</h3>
+        <a href="#">
+            <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>Instagram</li>
+                <li>YouTube</li>
+            </ul>
+        </a>
+    </div>
+    
+    </div>
+    <hr>
+  </div>
+</div>
+</div>
+{% endblock content %}

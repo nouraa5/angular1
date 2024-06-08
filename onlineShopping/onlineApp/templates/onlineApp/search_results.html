@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Search Results</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive ps">
+          <table class="table tablesorter" id="page1">
+            <thead class="thead-primary">
+              <tr>
+                <th class="align-middle" style="font-size: larger;">Image</th>
+                <th class="align-middle" style="font-size: larger;">Name</th>
+                <th class="align-middle" style="font-size: larger;">Price</th>
+                <th class="align-middle" style="font-size: larger;">Uploaded by</th>
+                {% comment %} <th>                
+                  <a class="btn btn-danger" href="{% url 'onlineApp:add_product' %}">Add New</a>
+                </th> {% endcomment %}
+              </tr>
+          </thead>
+          
+            <tbody>
+              {% for product in products %}
+              <tr>
+                {% if product.product_image %}
+                <td class="align-middle" style="font-size: larger;"><img src="{{ product.product_image.url }}" style="width:50px; height:50px; border:groove #000"></td>
+                {% endif %}
+                <td class="align-middle" style="font-size: larger;">{{ product.product_name }}</td>
+                <td class="align-middle" style="font-size: larger;">$ {{ product.product_price }}</td>
+                <td class="align-middle" style="font-size: larger;">{{ product.seller }}</td>
+
+                {% comment %} <td>
+                  <a class="btn btn-sm btn-danger" style="margin-right: 15px;" href="{% url 'onlineApp:edit_product' product_id=product.product_id %}">Edit</a>
+                  <a class="btn btn-sm btn-danger" href="{% url 'onlineApp:delete_product' product_id=product.product_id %}">Delete</a>
+                  
+                </td> {% endcomment %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+          </div>
+          <div class="ps__rail-y" style="top: 0px; right: 0px;">
+            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
